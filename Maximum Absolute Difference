@@ -1,0 +1,27 @@
+public class Solution {
+    public int maxArr(int[] A) {
+        
+        int max_ele_index_sum = Integer.MIN_VALUE;  // max value of A[i]+i
+        int min_ele_index_sum = Integer.MAX_VALUE; // min value of A[i]+i
+        
+        for(int i=0; i<A.length; i++){
+            if((A[i]+i) > max_ele_index_sum) max_ele_index_sum = A[i]+i;
+            if((A[i]+i) < min_ele_index_sum) min_ele_index_sum = A[i]+i;
+        }
+        
+        int diff_ele_index_sum = max_ele_index_sum - min_ele_index_sum; // diff of max and min of A[i]+i
+        // System.out.println(diff_ele_index_sum); // we can print in custom input
+        
+        int max_ele_index_diff = Integer.MIN_VALUE;  // max value of A[i]-i
+        int min_ele_index_diff = Integer.MAX_VALUE; // min value of A[i]-i
+        
+        for(int i=0; i<A.length; i++){
+            if((A[i]-i) > max_ele_index_diff) max_ele_index_diff = A[i]-i;
+            if((A[i]-i) < min_ele_index_diff) min_ele_index_diff = A[i]-i;
+        }
+        int diff_ele_index_diff = max_ele_index_diff - min_ele_index_diff; // diff of max and min of A[i]-i
+        // System.out.println(diff_ele_index_diff);
+        
+        return Math.max(diff_ele_index_sum, diff_ele_index_diff); //max of both diff
+    }
+}
