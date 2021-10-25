@@ -1,0 +1,32 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] repeatedNumber(final int[] A) {
+        
+        long m = 0;  // missing number
+        long r = 0;  // repeating number
+        long n = A.length; 
+        long n_sum = n*(n+1)/2;   // sum of n natural no
+        long nsq_sum = (n*(n+1)*(2*n+1))/6; // sum of squares of n natural number 
+        // here I will not get overflow bcz n is long
+        
+        long arr_sum = 0;  // sum of array elements
+        long arrsq_sum = 0;  // sum of squares of array element
+        
+        for(Integer  i : A){
+            arr_sum += i;
+            arrsq_sum += 1L*i*i; 
+        }
+        long n_diff = n_sum-arr_sum; // diff of sum of natural no and sum of array elements 
+                                    // n-diff = m-r
+        
+        long nsq_diff = nsq_sum-arrsq_sum; // diff = sum of squares of n natural no - sum of squares of array element
+                                          // diff = (m+r)(m-r)
+        m = (nsq_diff/n_diff + n_diff)/2;
+        r = (nsq_diff/n_diff - n_diff)/2;
+        
+        int arr[] = {(int)r, (int)m}; // repeating number precede(pahle) missing number
+        
+        return arr;
+        
+    }
+}
